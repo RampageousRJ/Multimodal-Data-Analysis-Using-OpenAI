@@ -218,3 +218,4 @@ __marimo__/
 virt*/**
 main.py
 data/
+.*

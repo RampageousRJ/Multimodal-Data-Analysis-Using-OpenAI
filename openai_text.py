@@ -27,6 +27,11 @@ def classify_text(text):
     prompt = create_prompt(text)
     return call_llm(prompt)
 
+# Translate text to a specified language
+def translate_text(text, language):
+    prompt = f"Translate the following text to {language}:\n\n{text} and only return the translated text. No explanations."
+    return call_llm(prompt)
+
 # Classify sentiments in batches for efficiency
 def classify_batch(texts, batch_size=5):
     all_results = []
