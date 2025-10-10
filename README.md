@@ -1,54 +1,54 @@
-# Multimodal-Data-Analysis-Using-OpenAI
+# Multimodal Data Analysis Using OpenAI
 
 ## Project Description
 
-The 'Multimodal-Data-Analysis-Using-OpenAI' repository is designed to demonstrate the application of OpenAI models to analyze and extract insights from multimodal data, specifically text and image data. This project is ideal for those looking to leverage advanced AI models in their data analysis workflows.
+The "Multimodal Data Analysis Using OpenAI" project provides a comprehensive framework for analyzing and processing text, audio, and image data via OpenAI's advanced models. It serves as a versatile toolset for executing complex data processing tasks including text analysis, audio transcription, and image interpretation with streamlined database interaction.
 
 ## Installation Instructions
 
-1. **Clone the repository:**
+1. Clone this repository:
    ```bash
-   git clone https://github.com/username/Multimodal-Data-Analysis-Using-OpenAI.git
-   cd Multimodal-Data-Analysis-Using-OpenAI
+   git clone https://github.com/yourusername/Multimodal-Data-Analysis-Using-OpenAI.git
    ```
-
-2. **Set up a virtual environment:**
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-   ```
-
-3. **Install required packages:**
+2. Navigate to the project directory.
+3. Install the required dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
 ## Usage
 
-- **Text Analysis:** Run `openai-text.py` to perform text-based data analysis using OpenAI's NLP models.
+1. **Text Analysis**: Utilize `openai_text.py` for processing and analyzing text data.
+   ```bash
+   python openai_text.py
+   ```
 
-  ```bash
-  python openai-text.py
-  ```
+2. **Audio Processing**: Leverage `openai_audio.py` to transcribe and analyze audio files.
+   ```bash
+   python openai_audio.py
+   ```
 
-- **Image Analysis:** Execute `openai-image.py` for image interpretation using OpenAI's computer vision capabilities.
+3. **Image Analysis**: Use `openai_image.py` for extracting information from images.
+   ```bash
+   python openai_image.py
+   ```
 
-  ```bash
-  python openai-image.py
-  ```
-
-Each script provides a set of configurable options that can be adjusted to tailor the analysis to specific datasets.
+4. **Database Utilities**: Manage and interact with your dataset efficiently using `db_utils.py` and `openai_database.py`.
+   ```bash
+   python db_utils.py
+   python openai_database.py
+   ```
 
 ## Features
 
-- **Text Analysis:** Extracts insights from text data including sentiment analysis, summarization, and keyword extraction.
-- **Image Analysis:** Supports image recognition, object detection, and content tagging.
-- **OpenAI Integration:** Easy-to-use scripts that leverage cutting-edge OpenAI models for automated data analysis.
+- **Multimodal Data Handling**: Comprehensive support for text, audio, and image data modalities.
+- **OpenAI Integration**: Harnesses the power of OpenAI models for advanced data analysis.
+- **Database Management**: Efficient data management and retrieval powered by robust database utilities.
 
 ## License
 
-This project is open source and available under the MIT License. See the `LICENSE` file for more information.
+This project is licensed under the MIT License.
 
 ---
 
-For questions or contributions, please open an issue or a pull request on the GitHub repository.
+For more information, please refer to the individual scripts and ensure you have the necessary API access keys configured as per OpenAI's usage policies.
