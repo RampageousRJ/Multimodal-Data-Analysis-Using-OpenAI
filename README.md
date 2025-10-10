@@ -8,7 +8,7 @@ The "Multimodal Data Analysis Using OpenAI" project provides a comprehensive fra
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/Multimodal-Data-Analysis-Using-OpenAI.git
+   git clone https://github.com/RampageousRJ/Multimodal-Data-Analysis-Using-OpenAI.git
    ```
 2. Navigate to the project directory.
 3. Install the required dependencies:
