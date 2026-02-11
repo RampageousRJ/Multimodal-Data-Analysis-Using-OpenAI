@@ -5,9 +5,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def create_database(db_path):
-    # Remove existing database for a fresh start
-    if os.path.exists(db_path):
-        os.remove(db_path)
     
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
@@ -83,5 +80,5 @@ def run_query(db_path, query):
     return results
 
 if __name__ == "__main__":
-    create_database('data/data.db')
+    # create_database('data/data.db')
     print(f"Database created successfully at: {'data/data.db'}")

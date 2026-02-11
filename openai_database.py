@@ -7,8 +7,6 @@ from db_utils import run_query
 import sqlite3
 load_dotenv()
 
-client = openai.Client(api_key=os.getenv("OPENAI_API_KEY"))
-
 def extract_table_structure(db_path):
     try:
         structure = ""
@@ -40,6 +38,9 @@ def create_prompt(structure, question):
     return prompt
 
 def call_llm(prompt):
+    
+    client = openai.Client(api_key=os.getenv("OPENAI_API_KEY"))
+
     messages = [
         {"role": "user", "content": prompt}
     ]
@@ -51,6 +52,17 @@ def call_llm(prompt):
     )
     return response.choices[0].message.content
 
+def get_database_response(path, question):
+    structure = extract_table_structure(path)
+    prompt = create_prompt(structure, question)
+    response_prompt = re.sub(r'`', '', call_llm(prompt)).strip()
+    results = run_query(path, response_prompt)
+
+    return {
+        "query": response_prompt,
+        "results": results
+    }
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Manage a simple database of entries.")
     parser.add_argument("-path", type=str, help="Path to the database file.", required=True)
@@ -60,7 +72,7 @@ if __name__ == "__main__":
     structure = extract_table_structure(args.path)
     print("=== Database Schema ===\n", structure)
     prompt = create_prompt(structure, args.question)
-    response = re.sub(r'`', '', call_llm(prompt)).strip()
-    print(f'\n\n\n=== Query ===\n {response}')
-    results = run_query(args.path, response)
+    response_prompt = re.sub(r'`', '', call_llm(prompt)).strip()
+    print(f'\n\n\n=== Query ===\n {response_prompt}')
+    results = run_query(args.path, response_prompt)
     print(f'\n\n\n=== Results ===\n {results}')
