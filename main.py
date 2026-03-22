@@ -4,10 +4,13 @@ from openai_database import get_database_response
 from openai_audio import transcribe_audio
 from openai_image import caption_image
 from openai_text import translate_text as lib_translate_text
+from fastapi import Request
+from fastapi.responses import JSONResponse
 
 load_dotenv()
 
-mcp = FastMCP("multimodal-openai-mcp")  
+mcp = FastMCP("multimodal-openai-mcp", host="0.0.0.0", port=8000)  
+# mcp = FastMCP("multimodal-openai-mcp")  
 
 @mcp.tool
 async def database_query_tool(path: str, question: str):
@@ -80,6 +83,23 @@ async def translate_text(text: str, language: str):
         }
 
 
+@mcp.custom_route("/rephrase_translate", methods=["POST"])
+async def rephrase_translate(request: Request):
+    data = await request.json()
+    text = data.get("text")
+    language = data.get("language")
+    try:
+        raw_result = await translate_text.fn(text, language)
+        return JSONResponse(content={"result": raw_result}) 
+    except Exception as e:
+        return JSONResponse(
+            status_code=500,
+            content={
+                "error": str(e),    
+                "type": type(e).__name__
+            }
+        )
+
 if __name__ == "__main__":
     print("Starting the server...")
-    mcp.run(transport="stdio")
+    mcp.run(transport="sse")
